@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Finder | PWA Module 1</title>
+</head>
+<body>
+
+  <main>
+
+    <header class="wrapper">
+      <h1>Car Finder</h1>
+      <p>Looking for your dream vehicle? Use the form below to find the car of your dreams.</p>
+    </header>
+
+    <section class="wrapper">
+      <form id="car-finder-form">
+        <ul class="fields">
+          <li class="field">
+            <h2>Year</h2>
+            <div class="form-control">
+              <label>Year</label>
+              <select id="car-finder-year" placeholder="Select year..."></select>
+            </div>
+          </li>
+          <li class="field">
+            <h2>Make</h2>
+            <div class="form-control">
+              <label>Make</label>
+              <select id="car-finder-make" placeholder="Select make..." disabled></select>
+            </div>
+          </li>
+          <li class="field">
+            <h2>Model</h2>
+            <div class="form-control">
+              <label>Model</label>
+              <select id="car-finder-model" placeholder="Select year..." disabled></select>
+            </div>
+          </li>
+        </ul>
+      </form>
+    </section>
+  </main>
+
+  <script src="bundle.js"></script>
+</body>
+</html>
