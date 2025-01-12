@@ -93,6 +93,7 @@ form ul {
       font-weight: 800;
       line-height: 1.35;
       color: $form-color;
+      transition: color 0.3s ease; // Smooth color transition
     }
 
     .dropdown-container {
@@ -149,6 +150,16 @@ form ul {
         color: #efefef;
         cursor: not-allowed;
       }
+    }
+
+    // Style last two headings as inactive initially
+    &:nth-last-child(-n+2) h2 {
+      color: $disabled-color;
+    }
+
+    // Active state
+    &.active h2 {
+      color: $form-color;
     }
   }
 

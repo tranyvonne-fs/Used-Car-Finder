@@ -66,46 +66,52 @@ const findVehicle = (selectedYear, selectedMake, selectedModel) => {
   );
 };
 
-// Event listener for year selection
-yearDropdown.addEventListener('change', () => {
-  const selectedYear = Number(yearDropdown.value);
-  const availableMakes = fetchMakesByYear(selectedYear);
-
-  // Reset and populate the make dropdown
-  makeDropdown.innerHTML = '';
-  modelDropdown.innerHTML = '';
-  availableMakes.forEach((make) => {
-    const option = document.createElement('option');
-    option.value = make;
-    option.textContent = make;
-    makeDropdown.appendChild(option);
+// Add logic to toggle 'active' class based on dropdown state
+const updateDropdownState = () => {
+    document.querySelectorAll('#finder-make, #finder-model').forEach((select) => {
+      const parentLi = select.closest('li');
+      if (!select.disabled) {
+        parentLi.classList.add('active'); // Add 'active' class when enabled
+      } else {
+        parentLi.classList.remove('active'); // Remove 'active' class when disabled
+      }
+    });
+  };
+  
+  // Modify existing event listeners to trigger state updates
+  yearDropdown.addEventListener('change', () => {
+    const selectedYear = Number(yearDropdown.value);
+    const availableMakes = fetchMakesByYear(selectedYear);
+  
+    // Reset and populate the make dropdown
+    makeDropdown.innerHTML = '';
+    modelDropdown.innerHTML = '';
+    availableMakes.forEach((make) => {
+      const option = document.createElement('option');
+      option.value = make;
+      option.textContent = make;
+      makeDropdown.appendChild(option);
+    });
+  
+    makeDropdown.disabled = availableMakes.size === 0;
+    modelDropdown.disabled = true; // Disable model dropdown when year changes
+    updateDropdownState(); // Update UI state
   });
-
-  makeDropdown.disabled = availableMakes.size === 0;
-});
-
-// Event listener for make selection
-makeDropdown.addEventListener('change', () => {
-  const selectedYear = Number(yearDropdown.value);
-  const selectedMake = makeDropdown.value;
-  const availableModels = fetchModelsByYearAndMake(selectedYear, selectedMake);
-
-  // Reset and populate the model dropdown
-  modelDropdown.innerHTML = '';
-  availableModels.forEach((model) => {
-    const option = document.createElement('option');
-    option.value = model;
-    option.textContent = model;
-    modelDropdown.appendChild(option);
+  
+  makeDropdown.addEventListener('change', () => {
+    const selectedYear = Number(yearDropdown.value);
+    const selectedMake = makeDropdown.value;
+    const availableModels = fetchModelsByYearAndMake(selectedYear, selectedMake);
+  
+    // Reset and populate the model dropdown
+    modelDropdown.innerHTML = '';
+    availableModels.forEach((model) => {
+      const option = document.createElement('option');
+      option.value = model;
+      option.textContent = model;
+      modelDropdown.appendChild(option);
+    });
+  
+    modelDropdown.disabled = availableModels.size === 0;
+    updateDropdownState(); // Update UI state
   });
-
-  modelDropdown.disabled = availableModels.size === 0;
-});
-
-// Event listener for model selection
-modelDropdown.addEventListener('change', () => {
-  const selectedYear = Number(yearDropdown.value);
-  const selectedMake = makeDropdown.value;
-  const selectedModel = modelDropdown.value;
-
-});
