@@ -1,0 +1,173 @@
+// Variables for consistent styling
+$primary-color: #FFFF;
+$subtext-color: #D3D3D3;
+$panel-color: #F2F2F2;
+$form-color: #348FBC; 
+$text-color: #212121;
+$disabled-color: #909090;
+$border-radius: 6px;
+$font-family: 'Open Sans', serif;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: url('/src/assets/car-finder-bg.jpg') center center / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.container {
+  width: 95vw;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: $font-family;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.35;
+  text-align: left;
+  color: $primary-color;
+}
+
+p {
+  font-family: $font-family;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  letter-spacing: 0.1em;
+  color: $subtext-color;
+  max-width: 600px;
+}
+
+form {
+  width: 100%;
+  padding: 30px;
+  background-color: $panel-color;
+  border-radius: 30px;
+}
+
+div > header.container {
+  margin-bottom: 50px;
+}
+
+form ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+    position: relative;
+
+    h2 {
+      font-family: $font-family;
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.35;
+      color: $form-color;
+    }
+
+    .dropdown-container {
+      width: 100%;
+      position: relative;
+
+      label {
+        font-family: $font-family;
+        font-size: 16px;
+        color: $disabled-color;
+        padding: 0 10px;
+        position: relative;
+        background: $panel-color;
+        z-index: 2;
+        margin-left: 10px;
+        margin-right: 175px;
+      }
+
+      &::before {
+        content: '';
+        width: calc(100% - 6px);
+        height: 48px;
+        border: 2px solid #aaa;
+        border-radius: 10px;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        z-index: 1;
+      }
+
+      select {
+        width: calc(100% - 20px);
+        height: 40px;
+        margin: 0;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 20px;
+        text-transform: capitalize;
+        position: relative;
+        z-index: 2;
+        cursor: pointer;
+      }
+    }
+
+    &.disabled .dropdown-container {
+      label {
+        color: #efefef;
+      }
+      &::before {
+        border-color: #efefef;
+      }
+      select {
+        color: #efefef;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  li:first-child::after,
+  li:last-child::after {
+    content: '';
+    height: 100%;
+    width: 3px;
+    background-color: rgba(217, 217, 217, 1);
+    position: absolute;
+    top: 0;
+    border-radius: 2px;
+  }
+
+  li:first-child::after {
+    right: 0;
+  }
+
+  li:last-child::after {
+    left: 0;
+  }
+}

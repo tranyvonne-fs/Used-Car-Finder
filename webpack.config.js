@@ -5,32 +5,29 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    clean: true, // Cleans the output directory before each build
+    path: path.resolve(__dirname, 'build'),
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    },
+    extensions: ['.js', '.scss', '.css'],
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
+        test: /\.js$/, // Test for .js files
+        exclude: /node_modules/, // Exclude node_modules
         use: {
-          loader: 'babel-loader',
+          loader: 'babel-loader', // Use Babel to transpile ES6 to ES5
           options: {
-            presets: ['@babel/preset-env'],
+            presets: ['@babel/preset-env'], // Babel preset for ES6+ features
           },
         },
       },
       {
         test: /\.scss$/,
-        use: [
-          'style-loader',  // Injects styles into DOM
-          'css-loader',    // Turns CSS into CommonJS
-          'sass-loader',   // Compiles Sass to CSS
-        ],
-      },
-      {
-        test: /\.(png|jpg|jpeg|gif|svg)$/i,  // Matches image files
-        type: 'asset/inline',  // Emits separate files and returns their URLs
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
@@ -40,12 +37,11 @@ module.exports = {
     }),
   ],
   devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'), // Serves static files from the 'dist' directory
-    },
-    compress: true,
-    port: 9001,
-    hot: false
+    compress: false,
+    port: 9000,
+    hot: true,
+    static: './build',
+    open: true
   },
-  mode: 'development',
+  mode: 'development'
 };
