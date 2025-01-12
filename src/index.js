@@ -108,5 +108,4 @@ modelDropdown.addEventListener('change', () => {
   const selectedMake = makeDropdown.value;
   const selectedModel = modelDropdown.value;
 
-  console.log(findVehicle(selectedYear, selectedMake, selectedModel));
 });
